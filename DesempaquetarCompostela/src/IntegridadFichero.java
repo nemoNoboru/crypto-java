@@ -26,7 +26,7 @@ public class IntegridadFichero {
 		
 		byte[] ciphered = cipher.Cifrar(hash, k);
 		p.anadirBloque(new Bloque("!ALLHASH:",ciphered));
-		PaqueteDAO.escribirPaquete("compostela.bin", p);
+		//PaqueteDAO.escribirPaquete("compostela.bin", p);
 	}
 	
 	public boolean CheckIntegridad(Paquete p, PublicKey k){

@@ -28,7 +28,7 @@ public class CompostelaBuilder {
 	
 	public void pushDataUsuario(String json, PrivateKey key_usuario){
 		byte[] dataCifrada = cipher.cifrar(json.getBytes());
-		byte[] digest = digester.digest(json.getBytes());
+		byte[] digest = digester.digest(dataCifrada);
 		byte[] cipherDigest = asimCipher.Cifrar(digest, key_usuario);
 		
 		paq.anadirBloque(new Bloque("!USERHASH:", cipherDigest));
@@ -36,7 +36,7 @@ public class CompostelaBuilder {
 	}
 	
 	public void write(PrivateKey k){
-		PaqueteDAO.escribirPaquete(name, paq);
 		integridad.WriteIntegridad(paq, k);
+		PaqueteDAO.escribirPaquete(name, paq);
 	}
 }
